@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+python-dotenv
+
+sqlalchemy
+psycopg2-binary
+alembic
+sqlmodel
+asyncpg
+passlib[bcrypt]
+python-jose[cryptography]
+python-multipart
+
+# alembic revision --autogenerate -m "message content"
+# alembic upgrade head
+# 
+# 
