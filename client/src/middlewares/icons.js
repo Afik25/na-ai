@@ -3,16 +3,37 @@ import {
   FaHandsHelping,
   FaPlay,
   FaStop,
-  FaMicrophoneAlt,FaLockOpen,FaLock
+  FaMicrophoneAlt,
+  FaLockOpen,
+  FaLock,
+  FaAt,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaYoutube,
 } from "react-icons/fa";
-import { BiChevronDown, BiChevronUp, BiEnvelope } from "react-icons/bi";
-import { BsEye, BsEyeSlash, BsFillCameraFill } from "react-icons/bs";
+import {
+  BiChevronDown,
+  BiChevronUp,
+  BiEnvelope,
+  BiPhone,
+} from "react-icons/bi";
+import {
+  BsEye,
+  BsEyeSlash,
+  BsFillCameraFill,
+  BsFileEarmarkText,
+} from "react-icons/bs";
 import { FiUsers, FiUser, FiLogOut } from "react-icons/fi";
 import { IoNotificationsOutline, IoHelp } from "react-icons/io5";
+import { IoMdChatboxes } from "react-icons/io";
 import {
   MdOutlineDashboard,
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
+  MdTranslate,
+  MdRecordVoiceOver,
 } from "react-icons/md";
 
 export {
@@ -20,7 +41,9 @@ export {
   FaHandsHelping,
   FaPlay,
   FaStop,
-  FaMicrophoneAlt,FaLockOpen,FaLock,
+  FaMicrophoneAlt,
+  FaLockOpen,
+  FaLock,
   FiUsers,
   FiUser,
   FiLogOut,
@@ -28,11 +51,25 @@ export {
   BiChevronUp,
   BsEye,
   BsEyeSlash,
+  BsFillCameraFill,
+  BsFileEarmarkText,
   BiEnvelope,
   IoNotificationsOutline,
   IoHelp,
+  IoMdChatboxes,
   MdOutlineDashboard,
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
-  BsFillCameraFill,
+  MdTranslate,
+  MdRecordVoiceOver,
+};
+
+export {
+  FaAt,
+  BiPhone,
+  FaMapMarkerAlt,
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaYoutube,
 };

@@ -8,6 +8,8 @@ import Register from "../pages/Register";
 import QA from "../pages/QA";
 import Administration from "../pages/Administration";
 import Collector from "../pages/Collector";
+import TextTranslation from "../pages/TextTranslation";
+
 //
 // layouts
 import Dashboard from "../pages/layouts/Dashboard";
@@ -30,6 +32,7 @@ export const routes = [
       { path: "/register", element: <Register /> },
       { path: "/login", element: <Login /> },
       { path: "/qa", element: <QA /> },
+      { path: "/ttranslations", element: <TextTranslation /> },
       {
         element: <PersistLogin />,
         children: [

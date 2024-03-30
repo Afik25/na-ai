@@ -1,12 +1,16 @@
 @import "./fonts";
+@import "./sizes";
 @import "./colors";
+@import "./buttons";
 @import "./grids";
 @import "./sizes";
 @import "./languages";
+@import "./modal";
 @import "./menu-drawer";
 @import "./inputs";
 @import "./modal";
-@import "./table";
+@import "./others";
+@import "./components";
 
 *,
 *::after,
@@ -26,7 +30,7 @@
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: $main-color;
+  background-color: $color-1;
 }
 ::-webkit-scrollbar-thumb:hover {
   background-color: $grey-color-1;
@@ -40,354 +44,90 @@ html {
 
 body {
   font-family: "raleway-regular", sans-serif;
-  font-size: $size-medium;
+  font-size: $size-1;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-.height {
-  height: 100%;
-}
-.width {
-  width: 100%;
-}
-.m-auto {
-  margin: auto;
-}
-.full {
-  width: 100%;
-  height: 100%;
-}
-
-.title {
-  text-decoration: none;
-  letter-spacing: 1px;
-  color: $black-color;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-.t-1 {
-  font-size: $size-large;
-}
-.t-2 {
-  font-size: $size-medium;
-}
-.t-3 {
-  font-size: $size-small-1;
-}
-
-.button {
-  @include padding(0.8em);
-  color: $white-color;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  letter-spacing: 1px;
-  transition: all 0.3s ease-in-out;
-}
-
-.link {
-  text-decoration: none;
-}
-//
-.fade-in {
-  animation: fadeIn 2s;
-}
-.fade-out {
-  animation: fadeOut 3s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-// logo
-.logo {
-  width: 160px;
-  height: 60px;
-  img {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-// Components
-// head
-.head {
-  width: 90%;
-  height: 100px;
-  // background-color: $white-color;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  @include padding(0 2em);
-  margin: auto;
-}
-.head.fixed {
-  position: fixed;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  transition: all 0.3s ease-in-out;
-  z-index: 99;
-}
-.nav,
-.other-nav {
-  display: flex;
-  align-items: center;
-}
-.nav {
-  .nav-item {
-    color: $gold-color;
-    margin-right: 1em;
-    font-size: $size-small-1;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      color: $black-color;
-    }
-  }
-}
-.other-nav {
-  .btn-sign-in,
-  .btn-sign-up {
-    margin-right: 0.8em;
-    font-size: $size-small-1;
-    font-weight: bold;
-    color: $gold-color;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      color: $grey-color-1;
-    }
-  }
-  .btn-sign-up {
-    background-color: $gold-color;
-    border-radius: 1.5em;
-    color: $black-color;
-    padding: 0.7em 1.5em;
-  }
-}
-//
-
-// Home
 .home {
   width: 100%;
-  .header {
-    position: relative;
+  .banner {
     width: 100%;
-    height: 700px;
-    // background-color: $red-color;
-    // background: rgb(2,0,36);
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(0, 212, 255, 1) 0%,
-      rgba(9, 9, 121, 1) 83%
-    );
-
-    .banner {
-      width: 90%;
-      height: calc(100% - 80px);
-      // background-color: $white-color;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      @include padding(0 2em 0);
-      margin: auto;
-
-      .left,
-      .right {
-        height: 100%;
-      }
-      .left {
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        .title {
-          letter-spacing: 0.05em;
-          margin-bottom: 0.5em;
-        }
-        .t-3 {
-          background-color: rgba($color: $gold-color, $alpha: 0.2);
-          border-radius: 0.8em;
-          @include padding(0.5em);
-          width: 55%;
-          color: $main-color;
-        }
-        .t-1 {
-          font-size: 3em;
-          font-weight: bold;
-        }
-        .t-2 {
-          color: $white-color;
-          font-size: $size-small-1;
-        }
-        .buttons {
-          display: flex;
-          margin-top: 0.6em;
-          .btn-join {
-            background-color: $main-color;
-            color: $white-color;
-            border-radius: 1em;
-            font-size: $size-small-1;
-            font-weight: bold;
-            margin-right: 1em;
-            @include padding(1em 1.5em);
-            position: relative;
-          }
-          .btn-join::after,
-          .btn-join::before {
-            content: " ";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            border-radius: 1em;
-          }
-          .btn-join::before {
-            background-color: transparent;
-            animation: pulse 1250ms ease-out infinite;
-            z-index: 10;
-          }
-          .btn-join::after {
-            background-color: lightblue;
-            z-index: 1;
-            animation: pulse 1250ms ease-out infinite;
-          }
-
-          .btn-demo {
-            background: none;
-            color: $black-color;
-            .icon {
-              margin-right: 0.3em;
-              background-color: $gold-color;
-              border-radius: 50%;
-              color: $white-color;
-              @include padding(0.7em);
-            }
-          }
-        }
-      }
-      .right {
-        width: 35%;
-        height: 100%;
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-    .banner.fixed {
-      height: 100%;
-    }
-  }
-  .section-one {
-    width: 100%;
-    @include padding(5em);
-
-    .container {
-      width: 80%;
-      margin: auto;
+    background-color: $white-color;
+    display: block;
+    @include padding($size-3);
+    .content {
+      width: 100%;
       display: flex;
       flex-direction: column;
-
+      align-items: center;
+      margin-bottom: $size-3;
+      @include padding($size-3);
       .t-1 {
+        font-size: $size-2;
         font-weight: bold;
-        font-size: 3em;
-        color: $main-color;
-        margin-bottom: 0.5em;
       }
-
-      .items-container {
-        width: 100%;
+      .t-3 {
+        font-size: $size-105;
+      }
+      .get-in-touch {
+        @include margin($size-3 0);
+        .button {
+          @include padding($size-105 $size-2);
+          background-color: $color-2;
+          border-radius: $size-1;
+          color: $white-color;
+        }
+      }
+    }
+    img {
+      width: 100%;
+      border-radius: $size-2;
+    }
+  }
+  .features{
+    width: 100%;
+    @include padding($size-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .t-2{
+      font-size: $size-2;
+      color: $color-2;
+    }
+    .t-3{
+      color: $grey-color-1;
+    }
+    .container{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      @include padding($size-3);
+      .button{
+        @include padding($size-2);
+        background-color: $color-3;
+        border-radius: $size-1;
+        color: $black-color;
+        margin: 0 $size-2;
         display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-        flex-wrap: wrap;
-        @include padding(1em 0);
-
-        .item {
-          width: 30%;
-          background: linear-gradient(
-            90deg,
-            rgba(2, 0, 36, 1) 0%,
-            rgba(0, 212, 255, 1) 0%,
-            rgba(255, 255, 255, 1) 83%
-          );
-          border-radius: 0.4em;
-          display: flex;
-          justify-content: space-evenly;
-          align-items: center;
-          @include padding(1em);
-          margin-bottom: 1rem;
-
-          .icon {
-            font-size: 4em;
-            color: $white-color;
-          }
-
-          .t-1 {
-            font-weight: normal;
-            font-size: 1em;
-            color: $black-color;
-          }
+        align-items: center;
+        justify-content: center;
+        &:hover{
+          background-color: $black-color;
+          color: $white-color;
+        }
+        .icon{
+          font-size: $size-2;
+        }
+        span{
+          margin-left: $size-1;
         }
       }
     }
   }
-  .footer {
-    width: 100%;
-    background-color: rgba(9, 9, 121, 1);
-    @include padding(2em);
-
-    .container {
-      width: 80%;
-      margin: auto;
-      text-align: center;
-      color: $white-color;
-    }
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  100% {
-    transform: scale(1.5);
-    opacity: 0;
-  }
-}
-
-.msg-box {
-  color: $white-color;
-  @include padding(1em);
-  margin-bottom: 1em;
-}
-
-.onSuccess {
-  background-color: $green-color;
-}
-.onFailed {
-  background-color: $red-color;
 }
 
 .sign-in {
@@ -530,7 +270,7 @@ body {
         .t-2 {
           color: $gold-color;
           font-weight: bold;
-          font-size: $size-large;
+          font-size: $size-105;
         }
         .t-3 {
           color: $black-color;
@@ -542,7 +282,7 @@ body {
         display: flex;
         justify-content: space-between;
         .normal {
-          background-color: $main-color;
+          background-color: $color-1;
           border-radius: 0.3rem;
         }
         .left,
@@ -553,7 +293,7 @@ body {
           width: 30%;
           padding-top: 1rem;
           .t-2 {
-            color: $main-color;
+            color: $color-1;
             font-weight: bold;
           }
           form {
@@ -569,13 +309,13 @@ body {
               }
               label {
                 position: relative;
-                color: $main-color;
+                color: $color-1;
                 font-family: "Times New Roman", Times, sans-serif;
                 cursor: pointer;
                 display: inline-flex;
                 align-items: center;
                 gap: 0.8em;
-                border: 1px solid $main-color;
+                border: 1px solid $color-1;
                 padding: 0.3em 0.4em;
                 border-radius: 0.5em;
                 margin-right: 0.3em;
@@ -585,7 +325,7 @@ body {
                 content: "";
                 height: 1em;
                 width: 1em;
-                border: 3px solid $main-color;
+                border: 3px solid $color-1;
                 border-radius: 50%;
               }
               input[type="radio"]:checked + label::before {
@@ -595,7 +335,7 @@ body {
               }
 
               input[type="radio"]:checked + label {
-                background-color: $main-color;
+                background-color: $color-1;
                 color: $white-color;
               }
             }
@@ -676,7 +416,7 @@ body {
               align-items: center;
               margin-right: 2rem;
               .input-audio {
-                font-size: $size-small-1;
+                font-size: $size-1;
               }
               span {
                 background-color: $grey-color-3;
@@ -685,7 +425,7 @@ body {
                 padding: 1rem;
                 transition: all 0.5s ease-in-out;
                 .icon {
-                  font-size: $size-large;
+                  font-size: $size-105;
                 }
                 &:hover {
                   background-color: $black-color;
@@ -712,9 +452,9 @@ body {
               padding: 0.7em;
               margin-bottom: 0.5rem;
               .t-2 {
-                color: $third-color;
+                color: $color-3;
                 font-weight: bold;
-                font-size: $size-small-1;
+                font-size: $size-1;
                 span {
                   background-color: $black-color;
                   color: $white-color;
@@ -725,7 +465,7 @@ body {
               }
               .t-3 {
                 color: $black-color;
-                font-size: $size-small-2;
+                font-size: $size-07;
               }
             }
           }
@@ -767,7 +507,7 @@ body {
         flex-direction: column;
         .active-option {
           background-color: rgba($color: $grey-color-1, $alpha: 0.15);
-          color: $main-color;
+          color: $color-1;
         }
         .inactive-option {
           color: $grey-color-1;
@@ -835,7 +575,7 @@ body {
           position: relative;
 
           .t-2 {
-            font-size: $size-small-1;
+            font-size: $size-1;
             margin: 0 0.5rem;
           }
 
@@ -880,7 +620,7 @@ body {
               color: $black-color;
               cursor: pointer;
               padding: 0.5rem 1rem;
-              font-size: $size-small-1;
+              font-size: $size-1;
 
               display: flex;
               align-items: center;
@@ -949,12 +689,12 @@ body {
             }
             .t-3 {
               color: $grey-color-1;
-              font-size: $size-medium;
+              font-size: $size-1;
             }
           }
           &:first-child {
             span {
-              background-color: $main-color;
+              background-color: $color-1;
             }
           }
           &:nth-child(2) {
@@ -976,7 +716,7 @@ body {
         padding: 0.7rem;
         margin-bottom: 1rem;
         .t-2 {
-          font-size: $size-medium;
+          font-size: $size-1;
           color: $grey-color-1;
         }
         .t-3 {
@@ -1020,7 +760,7 @@ body {
         button {
           position: absolute;
           padding: 0.5rem 1rem;
-          background-color: $main-color;
+          background-color: $color-1;
           color: $white-color;
           border: none;
           border-radius: 0.3rem;
@@ -1051,7 +791,7 @@ body {
           width: 100%;
           tbody {
             font-family: "Times New Roman", Times, serif;
-            font-size: $size-small-1;
+            font-size: $size-1;
             .tbody-col-7 {
               .container {
                 display: flex;
@@ -1064,9 +804,9 @@ body {
                   display: flex;
                   .button {
                     background-color: $black-color;
-                    border-radius: $size-small-2;
+                    border-radius: $size-07;
                     color: $white-color;
-                    font-size: $size-small-1;
+                    font-size: $size-1;
                     &:hover {
                       background-color: rgba(
                         $color: $grey-color-1,
@@ -1138,7 +878,7 @@ body {
         position: relative;
 
         .t-2 {
-          font-size: $size-small-1;
+          font-size: $size-1;
           margin: 0 0.5rem;
         }
 
@@ -1183,7 +923,7 @@ body {
             color: $black-color;
             cursor: pointer;
             padding: 0.5rem 1rem;
-            font-size: $size-small-1;
+            font-size: $size-1;
 
             display: flex;
             align-items: center;
@@ -1243,7 +983,7 @@ body {
         }
         span {
           color: $white-color;
-          font-size: $size-large;
+          font-size: $size-105;
         }
       }
     }
@@ -1259,21 +999,21 @@ body {
         width: 100%;
         height: auto;
         border-bottom: 1px solid $grey-color-2;
-        margin-bottom: $size-medium;
-        padding-bottom: $size-medium;
+        margin-bottom: $size-1;
+        padding-bottom: $size-1;
         display: flex;
         justify-content: space-evenly;
         .title {
           margin: 0;
-          font-size: $size-medium;
+          font-size: $size-1;
         }
         .lang-item {
           display: flex;
-          margin-right: $size-medium;
+          margin-right: $size-1;
           .t-2 {
-            color: $main-color;
+            color: $color-1;
             font-weight: bold;
-            margin-left: $size-small-2;
+            margin-left: $size-07;
           }
           .t-3 {
             font-weight: 500;
@@ -1293,11 +1033,11 @@ body {
         .t-2 {
           color: $gold-color;
           font-weight: bold;
-          font-size: $size-large;
+          font-size: $size-105;
         }
         .t-3 {
           color: $black-color;
-          font-size: $size-medium;
+          font-size: $size-1;
           font-weight: bold;
         }
       }
@@ -1319,11 +1059,11 @@ body {
           align-items: center;
           margin-right: 2rem;
           .ruban {
-            color: $main-color;
+            color: $color-1;
             font-size: 0.7rem;
           }
           .input-audio {
-            font-size: $size-small-1;
+            font-size: $size-1;
           }
           .icon {
             background-color: $grey-color-3;
@@ -1331,7 +1071,7 @@ body {
             cursor: pointer;
             padding: 0.9rem;
             transition: all 0.5s ease-in-out;
-            font-size: $size-large;
+            font-size: $size-105;
 
             &:hover {
               background-color: $black-color;
@@ -1392,7 +1132,7 @@ body {
           .bar {
             width: 12px;
             height: 1px;
-            border-radius: $size-medium;
+            border-radius: $size-1;
             background-color: $grey-color-2;
           }
         }
@@ -1497,7 +1237,7 @@ body {
       }
       .step-1 {
         margin-bottom: 1rem;
-        .t-3{
+        .t-3 {
           color: $grey-color-1;
         }
       }
@@ -1509,7 +1249,7 @@ body {
           display: flex;
           justify-content: space-between;
           .normal {
-            background-color: $main-color;
+            background-color: $color-1;
             border-radius: 0.3rem;
           }
           .left,
@@ -1546,9 +1286,9 @@ body {
                 padding: 0.7em;
                 margin-bottom: 0.5rem;
                 .t-2 {
-                  color: $third-color;
+                  color: $color-3;
                   font-weight: bold;
-                  font-size: $size-small-1;
+                  font-size: $size-1;
                   span {
                     background-color: $black-color;
                     color: $white-color;
@@ -1559,7 +1299,7 @@ body {
                 }
                 .t-3 {
                   color: $black-color;
-                  font-size: $size-small-2;
+                  font-size: $size-07;
                 }
               }
             }
@@ -1583,4 +1323,53 @@ body {
 }
 
 @media only screen and (max-width: 688px) {
+  .home {
+    .banner {
+      @include padding($size-1);
+      .content {
+        margin-bottom: $size-2;
+        @include padding($size-2);
+        .t-1 {
+          font-size: $size-102;
+          text-align: center;
+        }
+        .t-3 {
+          font-size: $size-1;
+          color: $grey-color-1;
+          text-align: center;
+        }
+        .get-in-touch {
+          @include margin($size-3 0);
+          .button {
+            @include padding($size-102 $size-107);
+          }
+        }
+      }
+      img {
+        width: 100%;
+        border-radius: $size-2;
+      }
+    }
+    .features{
+      @include padding($size-102);
+      justify-content: center;
+      .t-2{
+        font-size: $size-1;
+      }
+      .t-3{
+        color: $grey-color-1;
+        text-align: center;
+      }
+      .container{
+        flex-direction: column;
+        @include padding($size-102);
+        .button{
+          @include padding($size-105 $size-2);
+          border-radius: $size-1;
+          margin: $size-1 0;
+
+        }
+      }
+    }
+  }
 }
