@@ -32,7 +32,6 @@ import {
   completeActivation,
   loadData,
 } from "../services/authentication";
-import { SERVER_URL } from "../routes/index";
 
 const Administration = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -471,7 +470,7 @@ const Administration = () => {
                       src={
                         !connectedUser?.userInfo?.thumbnails
                           ? process.env.PUBLIC_URL + "/user.png"
-                          : `${SERVER_URL}/${connectedUser?.userInfo?.thumbnails}`
+                          : `${process.env.REACT_APP_API_SERVER_URL}:${process.env.REACT_APP_API_SERVER_PORT}/${connectedUser?.userInfo?.thumbnails}`
                       }
                       alt="user-profile"
                       className="width height"

@@ -9,9 +9,10 @@ load_dotenv('.env')
 
 DEV_DB_USER = os.getenv('DEV_DB_USER')
 DEV_DB_PASSWORD = os.getenv('DEV_DB_PASSWORD')
+DEV_DB_PORT = os.getenv('DEV_DB_PORT')
 DEV_DB_DATABASE_NAME = os.getenv('DEV_DB_DATABASE_NAME')
 
-DB_CONFIG = f"postgresql+asyncpg://{DEV_DB_USER}:{DEV_DB_PASSWORD}@localhost:5432/{DEV_DB_DATABASE_NAME}"
+DB_CONFIG = f"postgresql+asyncpg://{DEV_DB_USER}:{DEV_DB_PASSWORD}@localhost:{DEV_DB_PORT}/{DEV_DB_DATABASE_NAME}"
 
 
 class AsyncDatabaseSession:

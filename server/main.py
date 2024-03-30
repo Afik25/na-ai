@@ -24,7 +24,7 @@ def init_app():
     )
 
     @app.on_event("startup")
-    async def starup():
+    async def startup():
         await db.create_all()
 
     @app.on_event("shutdown")
