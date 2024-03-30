@@ -1,4 +1,3 @@
-export const SERVER_URL = "http://192.168.0.197:8000";
 export const REGISTER = "/auth/register";
 export const COMPLETE = "/auth/complete";
 export const COMPLETE_ACTIVATION = "/auth/activation";
