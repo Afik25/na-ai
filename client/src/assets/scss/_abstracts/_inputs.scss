@@ -38,13 +38,13 @@
   }
   .input-textarea:focus,
   .input-form:focus {
-    border: 1.5px solid $color-3;
+    border: 1.5px solid $color-1;
     background: none;
     + .label-form {
       top: -0.8em;
       left: 0.8em;
       background-color: $white-color;
-      color: $color-3;
+      color: $color-1;
       font-size: $size-07;
       font-weight: 500;
       z-index: 10;

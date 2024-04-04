@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEyeSlash, BsEye } from "../middlewares/icons";
+import ControlLanguage from "../components/languages/ControlLanguage";
 //
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,14 +10,13 @@ import { validationSchemaLogin, wait } from "../utils/utils";
 //
 import { login } from "../services/authentication";
 import useAuth from "../state/context/hooks/useAuth";
+import MessageBox from "../components/msgBox/MessageBox";
 //
 const Login = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [responseMessage, setResponseMessage] = useState("");
-  const [classNameMsg, setClassNameMsg] = useState(
-    "width msg-box display-flex justify-content-center align-items-center"
-  );
+  const [onRequest, setOnRequest] = useState({ show: false, onSucces: false });
+  const [msg, setMsg] = useState("");
 
   const { setAuth } = useAuth();
   const navigate = useNavigate();
@@ -35,33 +35,33 @@ const Login = () => {
     await wait(1000);
     //
     login(data)
-      .then((result) => {
-        if (result?.data?.isLogged) {
+      .then((response) => {
+        if (response?.data?.isLogged) {
           setIsSending(false);
-          setResponseMessage(result?.data?.message);
+          setMsg(response?.data?.message);
+          setOnRequest({ show: true, onSucces: true });
         }
-        const accessToken = result?.data?.accessToken;
-        const sys_role = result?.data?.sys_role;
+        const accessToken = response?.data?.accessToken;
+        const sys_role = response?.data?.sys_role;
         const to = "/" + sys_role;
-        setAuth({ sys_role, accessToken });
-        navigate(to, { replace: true });
+        const timer = setTimeout(() => {
+          setOnRequest({ show: false, onSucces: false });
+          setAuth({ sys_role, accessToken });
+          navigate(to, { replace: true });
+        }, 2000);
+        return () => clearTimeout(timer);
       })
       .catch((error) => {
         setIsSending(false);
-        setClassNameMsg(
-          "width msg-box onFailed fade-in display-flex justify-content-center align-items-center"
-        );
+        setOnRequest({ show: true, onSucces: false });
         if (!error?.response) {
-          setResponseMessage("No server response");
+          setMsg("No server response");
         } else {
-          setResponseMessage(error?.response?.data?.detail);
+          setMsg(error?.response?.data?.message);
         }
         const timer = setTimeout(() => {
-          setClassNameMsg(
-            "width msg-box display-flex justify-content-center align-items-center"
-          );
-          setResponseMessage("");
-        }, 3500);
+          setOnRequest({ show: false, onSucces: false });
+        }, 2000);
         return () => clearTimeout(timer);
       });
   };
@@ -69,97 +69,113 @@ const Login = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Afik AI Labs - Login.</title>
+        <title>na-AI - Sign In.</title>
         <meta
           name="description"
           content="Get connected and navigate in opportunities."
         />
         <meta
           name="keywords"
-          content="École, School, Masomo, Étudier, Éducation, Se connecter, Login, Connexion"
+          content="Language, Communication, École, School, Masomo, Étudier, Éducation"
         />
       </Helmet>
-      <div className="sign-in">
+      <div className="sign-in-up">
+        <div className="head">
+          <Link to="/" className="link logo">
+            <img src={process.env.PUBLIC_URL + "/logo.png"} alt="na-ai-logo"/>
+          </Link>
+          <ControlLanguage />
+        </div>
         <div className="container">
-          <div className="head">
-            <div className="image-logo">
-              <Link to="/" className="link">
-                <img src={process.env.PUBLIC_URL + "/logo.png"} alt="log-app" />
-              </Link>
-            </div>
-            <h2 className="title t-1">Hey, Sign In !</h2>
-            <p>
-              Welcome back, get connected and explore opportunities that is
-              waiting for you...
-            </p>
-          </div>
-          <form className="body" onSubmit={handleSubmit(onSubmit)}>
-            {responseMessage && (
-              <div className={classNameMsg}>{responseMessage}</div>
-            )}
-            <div className="input-div">
-              <input
-                type="text"
-                className="input-form"
-                autoComplete="none"
-                placeholder=" "
-                {...register("username")}
-              />
-              <label htmlFor="username" className="label-form">
-                Username ou E-mail ou Telephone
-              </label>
-              {errors.username && (
-                <span className="fade-in">{errors.username.message}</span>
+          <div className="left">
+            <form onSubmit={handleSubmit(onSubmit)} className="form">
+              <h2 className="title t-1">Sing In</h2>
+              <p className="title t-3">
+                Get connected and start manage your activities with Shop
+              </p>
+              {onRequest.show && (
+                <MessageBox text={msg} isSuccess={onRequest.onSucces} />
               )}
-            </div>
-            <div className="input-div">
-              <input
-                type={showPwd ? "text" : "password"}
-                className="input-form"
-                autoComplete="none"
-                placeholder=" "
-                {...register("password")}
-              />
-              <label htmlFor="password" className="label-form">
-                Password
-              </label>
-              <label htmlFor="password" className="label-icon">
-                {showPwd ? (
-                  <BsEye
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setShowPwd(!showPwd)}
+              <div className="form-components">
+                <div className="input-div">
+                  <input
+                    type="text"
+                    className="input-form"
+                    autoComplete="none"
+                    placeholder=" "
+                    {...register("username")}
                   />
-                ) : (
-                  <BsEyeSlash
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setShowPwd(!showPwd)}
+                  <label htmlFor="username" className="label-form">
+                    Username ou E-mail ou Telephone
+                  </label>
+                  {errors.username && (
+                    <span className="fade-in">{errors.username.message}</span>
+                  )}
+                </div>
+                <div className="input-div">
+                  <input
+                    type={showPwd ? "text" : "password"}
+                    className="input-form"
+                    autoComplete="none"
+                    placeholder=" "
+                    {...register("password")}
                   />
-                )}
-              </label>
-              {errors.password && (
-                <span className="fade-in">{errors.password.message}</span>
-              )}
-            </div>
-            <div className="width display-flex justify-content-flex-end">
-              <Link to="" className="link">
-                Forgot password ?
-              </Link>
-            </div>
-            <div className="width">
+                  <label htmlFor="password" className="label-form">
+                    Password
+                  </label>
+                  <label htmlFor="password" className="label-icon">
+                    {showPwd ? (
+                      <BsEye
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setShowPwd(!showPwd)}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        style={{ cursor: "pointer" }}
+                        onClick={() => setShowPwd(!showPwd)}
+                      />
+                    )}
+                  </label>
+                  {errors.password && (
+                    <span className="fade-in">{errors.password.message}</span>
+                  )}
+                </div>
+              </div>
+              <div className="input-div display-flex justify-content-flex-end">
+                <Link to="" className="link">
+                  Forgot password ?
+                </Link>
+              </div>
               <button
                 type="submit"
                 className={isSending ? "width button" : "width button normal"}
               >
                 {isSending ? "Connexion..." : "Sign In"}
               </button>
-            </div>
-            <div className="get_sign-in">
-              <span>You don't have account ?</span>
-              <Link to="/register" className="btn-sign-in link">
-                Sign Up
-              </Link>
-            </div>
-          </form>
+              <div className="get_sign-in">
+                <span>You don't have account ?</span>
+                <Link to="/register" className="btn-sign-in link">
+                  Sign Up
+                </Link>
+              </div>
+            </form>
+          </div>
+          <div className="right">
+            <h1 className="title t-1">na-AI</h1>
+            <h3 className="title t-2">
+              Let us help you to grow up your business!
+            </h3>
+            <p className="title t-3">
+              The log in process allowing you to get access in the quick and
+              easy way to all ressources.
+            </p>
+          </div>
+        </div>
+        <div className="foot">
+          <span>
+            All rights reserved Afik Foundation &copy;{" "}
+            {new Date().getFullYear()} - na-AI Platform.
+          </span>
         </div>
       </div>
     </HelmetProvider>
