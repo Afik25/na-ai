@@ -6,7 +6,7 @@ import {
   FaLock,
 } from "../../middlewares/icons";
 import { useDispatch, useSelector } from "react-redux";
-import useAxiosPrivate from "../../state/context/hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../hooks/context/state/useAxiosPrivate";
 import { isEmpty, wait } from "../../utils/utils";
 import { getUsers, onAssignationLanguage } from "../../services/users";
 import moment from "moment";

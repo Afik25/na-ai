@@ -20,18 +20,18 @@
       align-items: center;
       @include padding($size-1);
       .title {
-        font-size: $size-2;
+        font-size: $size-102;
         margin: 0;
       }
       .close {
         cursor: pointer;
-        font-size: $size-3;
+        font-size: $size-2;
       }
     }
     .body {
       width: 100%;
       height: calc(100% - 40px) !important;
-      font-size: $size-107;
+      font-size: $size-1;
       @include padding($size-1);
       overflow-y: auto;
     }

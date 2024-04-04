@@ -24,8 +24,8 @@ class RegisterSchema(BaseModel):
 class CompleteRegisterSchema(BaseModel):
 
     id: int
-    prename: str
-    name: str
+    firstname: str
+    lastname: str
     gender: str
     telephone: str
     mail: str
@@ -33,9 +33,7 @@ class CompleteRegisterSchema(BaseModel):
     birth_location: str
     is_completed: bool
     thumbnails: Optional[str]
-    username: str
-    old_password: str
-    new_password: str
+    nationality: str
     #
     dates: str
     location: str
@@ -51,10 +49,10 @@ class CompleteRegisterSchema(BaseModel):
         logger.debug(f"phone is 2 validator: {v}")
 
         # regex phone number
-        regex = r"^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{4,6}$"
+        regex = r"^[\+]?[(]?[0-9]{4}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[0-9]{1,6}$"
         if v and not re.search(regex, v, re.I):
             raise HTTPException(
-                status_code=400, detail="Invalid input phone number!")
+                status_code=400, detail={"status": 0, "message": "Invalid input phone number!"})
         return v
 
 

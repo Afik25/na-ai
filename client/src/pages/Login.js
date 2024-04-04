@@ -9,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSchemaLogin, wait } from "../utils/utils";
 //
 import { login } from "../services/authentication";
-import useAuth from "../state/context/hooks/useAuth";
+import useAuth from "../hooks/context/state/useAuth";
 import MessageBox from "../components/msgBox/MessageBox";
 //
 const Login = () => {
@@ -161,14 +161,11 @@ const Login = () => {
             </form>
           </div>
           <div className="right">
-            <h1 className="title t-1">na-AI</h1>
+            <h1 className="title t-1">with na-AI</h1>
             <h3 className="title t-2">
-              Let us help you to grow up your business!
+              Make simple your communication and understanding in local languages!
             </h3>
-            <p className="title t-3">
-              The log in process allowing you to get access in the quick and
-              easy way to all ressources.
-            </p>
+            <img src={process.env.PUBLIC_URL + '/people-speech.png'} alt="na-ai-brand"/>
           </div>
         </div>
         <div className="foot">

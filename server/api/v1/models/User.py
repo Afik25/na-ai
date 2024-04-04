@@ -16,6 +16,8 @@ class User(SQLModel, TimeMixin, table=True):
     birth: str = Field(sa_column=Column("birth", String, unique=False))
     birth_location: str = Field(sa_column=Column(
         "birth_location", String, unique=False))
+    nationality: str = Field(sa_column=Column(
+        "nationality", String, unique=False))
     username: str = Field(sa_column=Column("username", String, unique=True))
     password: str = Field(sa_column=Column("password", String, unique=False))
     thumbnails: str = Field(sa_column=Column(

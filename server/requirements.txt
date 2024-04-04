@@ -11,7 +11,11 @@ passlib[bcrypt]
 python-jose[cryptography]
 python-multipart
 
+# pip install -r requirements.txt
+# (base) afik@Amss-MacBook-Pro server % source venv/bin/activate
+# alembic init -t async migrations
 # alembic revision --autogenerate -m "message content"
 # alembic upgrade head
 # 
-# 
+
+# password=pwd_context.hash(register.new_password)

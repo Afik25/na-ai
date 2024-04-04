@@ -75,7 +75,7 @@ const Register = () => {
       <div className="sign-in-up">
         <div className="head">
           <Link to="/" className="link logo">
-            <img src={process.env.PUBLIC_URL + "/logo.png"} alt="na-logo"/>
+            <img src={process.env.PUBLIC_URL + "/logo.png"} alt="na-logo" />
           </Link>
           <ControlLanguage />
         </div>
@@ -88,23 +88,6 @@ const Register = () => {
                 <MessageBox text={msg} isSuccess={onRequest.onSucces} />
               )}
               <div className="form-components">
-                <div className="input-div">
-                  <input
-                    type="text"
-                    className="input-form"
-                    autoComplete="none"
-                    placeholder=" "
-                    {...register("organization")}
-                  />
-                  <label htmlFor="organization" className="label-form">
-                    Organization's Name
-                  </label>
-                  {errors.organization && (
-                    <span className="fade-in">
-                      {errors.organization.message}
-                    </span>
-                  )}
-                </div>
                 <div className="input-div fragment-48">
                   <input
                     type="text"
@@ -114,7 +97,7 @@ const Register = () => {
                     {...register("firstname")}
                   />
                   <label htmlFor="firstname" className="label-form">
-                    Firstname
+                    First name
                   </label>
                   {errors.firstname && (
                     <span className="fade-in">{errors.firstname.message}</span>
@@ -129,7 +112,7 @@ const Register = () => {
                     {...register("lastname")}
                   />
                   <label htmlFor="lastname" className="label-form">
-                    Lastname
+                    Last name
                   </label>
                   {errors.lastname && (
                     <span className="fade-in">{errors.lastname.message}</span>
@@ -247,14 +230,15 @@ const Register = () => {
             </form>
           </div>
           <div className="right">
-            <h1 className="title t-1">Shop</h1>
+            <h1 className="title t-1">with na-AI</h1>
             <h3 className="title t-2">
-              Let us help you to grow up your business!
+              Make simple your communication and understanding in local
+              languages!
             </h3>
-            <p className="title t-3">
-              The registration process is quick and simple, taking no more then
-              10 minutes to complete.
-            </p>
+            <img
+              src={process.env.PUBLIC_URL + "/people-speech.png"}
+              alt="na-ai-brand"
+            />
           </div>
         </div>
         <div className="foot">

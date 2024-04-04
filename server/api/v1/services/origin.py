@@ -10,22 +10,25 @@ import os
 class Origins:
 
     @staticmethod
-    async def load():
+    async def load(fileName, category):
+        print("*****"*10)
+        print({"print from load ": fileName, 'category': category})
+        print("*****"*10)
 
         counter = 0
-        with open(os.getcwd()+"/data/clean_fr.txt", 'r') as file:
-            for line in file:
-                # checking the text
-                _text = await OriginRepository.findByText(line)
+        # with open(os.getcwd()+f"/data/{fileName}", 'r') as file:
+        #     for line in file:
+        #         # checking the text
+        #         _text = await OriginRepository.findByText(line)
 
-                if _text is None:
-                    # mapping request data to class entity table
-                    _originObj = Origin(
-                        language="fr", text=line, audio='---', status=1)
+        #         if _text is None:
+        #             # mapping request data to class entity table
+        #             _originObj = Origin(
+        #                 language="fr", text=line, audio='---', status=1, category=category)
 
-                    _origRs = await OriginRepository.create(**_originObj.dict())
-                    if _origRs:
-                        counter += 1
+        #             _origRs = await OriginRepository.create(**_originObj.dict())
+        #             if _origRs:
+        #                 counter += 1
 
         return {"status": 1, "message": "Data process and load successfully!", "result":  counter}
 

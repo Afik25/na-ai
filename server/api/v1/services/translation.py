@@ -22,8 +22,7 @@ class Translations:
         if not os.path.exists(newLangFolder):
             os.makedirs(newLangFolder)
 
-        newCategoryFolder = os.getcwd() + '/data/origins/' + \
-            origin_data['lang'] + '/' + origin_data['category']
+        newCategoryFolder = os.getcwd() + '/data/origins/' + origin_data['lang'] + '/' + origin_data['category']
 
         if not os.path.exists(newCategoryFolder):
             os.makedirs(newCategoryFolder)

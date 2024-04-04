@@ -42,8 +42,8 @@ export function login(data) {
 
 export function inscription(data) {
   const _data = {
-    prename: data.prename,
-    name: data.name,
+    prename: data.firstname,
+    name: data.lastname,
     username: data.username,
     password: data.password,
     is_completed: false,
@@ -67,8 +67,8 @@ export function inscription(data) {
 export function completeInscription(axiosPrivate, data) {
   const _data = {
     id: data.id,
-    prename: data.prename,
-    name: data.name,
+    firstname: data.firstname,
+    lastname: data.lastname,
     gender: data.gender,
     telephone: data.telephone,
     mail: data?.mail || "",
@@ -76,9 +76,7 @@ export function completeInscription(axiosPrivate, data) {
     birth_location: data.birth_location,
     is_completed: false,
     thumbnails: data.thumbnails,
-    username: data.username,
-    old_password: data.old_password,
-    new_password: data.new_password,
+    nationality: data.nationality,
     //
     dates: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
     location: "N/A",
@@ -126,12 +124,16 @@ export function completeActivation(axiosPrivate, data) {
   });
 }
 
-export function loadData(axiosPrivate) {
+export function loadData(axiosPrivate, data) {
   return new Promise(async (resolve, reject) => {
     await axiosPrivate
       .get(LOAD_DATA,{
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
+        params: {
+          fileName: data?.fileName,
+          category: data?.category
+        }
       })
       .then((response) => {
         resolve(response);

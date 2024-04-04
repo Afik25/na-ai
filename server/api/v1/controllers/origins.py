@@ -8,8 +8,8 @@ router = APIRouter(prefix="/api/v1/origin", tags=['Origins'])
 
 
 @router.get("/load")
-async def load():
-    result = await Origins.load()
+async def load(fileName: str, category: str):
+    result = await Origins.load(fileName, category)
     response = JSONResponse(content=result)
     return response
 

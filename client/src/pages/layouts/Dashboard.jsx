@@ -16,7 +16,7 @@ import {
   Sector,
   Cell,
 } from "recharts";
-import useAxiosPrivate from "../../state/context/hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../hooks/context/state/useAxiosPrivate";
 import swal from "sweetalert";
 import { wait } from "../../utils/utils";
 import { loadData } from "../../services/authentication";
@@ -127,11 +127,15 @@ const Dashboard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onLoadData = async () => {
+    const data = {
+      fileName: "clean_fr.txt",
+      category: "Category climate"
+    }
     // data traitment for submitting
     await wait(1000);
     //
     setIsSubmitting(!isSubmitting);
-    loadData(axiosPrivate)
+    loadData(axiosPrivate, data)
       .then((result) => {
         let response = result;
         if (response?.data?.status === 1) {

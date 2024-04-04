@@ -1,6 +1,6 @@
 import MainLayout from "../MainLayout";
-import PersistLogin from "../state/context/hooks/PersistLogin";
-import RequireAuth from "../state/context/hooks/RequireAuth";
+import PersistLogin from "../hooks/context/state/PersistLogin";
+import RequireAuth from "../hooks/context/state/RequireAuth";
 // pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";

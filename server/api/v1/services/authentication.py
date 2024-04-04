@@ -73,24 +73,16 @@ class Authentication:
 
     @staticmethod
     async def complete(register: CompleteRegisterSchema):
-
-        # checking the username
-        _user = await UserRepository.findById(register.id)
-        if register.username.lower() == _user.username.lower():
+        # checking the mail
+        _user = await UserRepository.findByMail(register.mail)
+        if (_user is not None) and ( register.mail.lower() == _user.mail if _user.mail is not None else None ):
             raise HTTPException(
-                status_code=400, detail={"status": 0, "message": "The username already exist!"})
-
-        if not pwd_context.verify(register.old_password, _user.password):
-            raise HTTPException(
-                status_code=400, detail={"status": 0, "message": "Invalid old password!"})
+                status_code=400, detail={"status": 0, "message": "The e-mail already exist!"})
 
         # mapping request data to class entity table
-        usern = _user.username.lower(
-        ) if register.username == '' or register.username is None else register.username
-        _userObj = User(prename=register.prename, name=register.name, gender=register.gender, telephone=register.telephone,
-                        mail=register.mail, birth=register.birth, birth_location=register.birth_location,
-                        is_completed=register.is_completed, username=usern,
-                        password=pwd_context.hash(register.new_password), status=0)
+        _userObj = User(prename=register.firstname.lower(), name=register.lastname.lower(), gender=register.gender.lower(), telephone=register.telephone,
+                        mail=register.mail, birth=register.birth, birth_location=register.birth_location.lower(),
+                        nationality=register.nationality, is_completed=register.is_completed, status=0)
 
         _userRs = await UserRepository.update(register.id, **_userObj.dict())
 

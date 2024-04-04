@@ -204,6 +204,105 @@
   }
 }
 
+.msg-box {
+  width: 100%;
+  @include margin($size-09 0);
+  .onSuccess,
+  .onFailed {
+    width: 100%;
+    border-radius: $size-03;
+    color: $white-color;
+    font-weight: bold;
+    text-align: center;
+    @include padding($size-07 $size-05);
+  }
+  .onSuccess {
+    border: 1px solid $green-color;
+    background-color: rgba($color: $green-color, $alpha: 0.5);
+  }
+  .onFailed {
+    border: 1px solid $red-color;
+    background-color: rgba($color: $red-color, $alpha: 0.5);
+  }
+}
+.complete-register {
+  width: 100%;
+  height: 100%;
+  .cr-head {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin-bottom: 10px;
+    .cr-tab {
+      height: 100%;
+      color: $grey-color-1;
+      font-size: $size-07;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @include padding(1rem);
+    }
+    .active-tab {
+      background-color: $color-1;
+      border-radius: 0.5rem;
+      color: $white-color;
+      font-weight: bold;
+      transition: all 0.3s ease-in;
+      span {
+        letter-spacing: 1px;
+      }
+    }
+  }
+  .cr-body {
+    height: calc(100% - 60px);
+    .steps {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+    .container-48{
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .input-div{
+        width: 48%;
+      }
+    }
+    .buttons {
+      text-align: center;
+      .previous {
+        margin-right: auto;
+      }
+      .validate {
+        width: 30%;
+        border-radius: $size-03;
+        color: $white-color;
+      }
+    }
+  }
+}
+.load-data{
+  background-color: $white-color;
+  border: 1px solid $grey-color-2;
+  @include padding($size-07);
+  form{
+    width: 100%;
+    display: flex;
+    .input-div{
+      margin: 0;
+      margin-right: $size-09;
+    }
+    .button{
+      @include padding($size-03);
+      color: $white-color;
+    }
+  }
+  .loagin-data-process{
+    width: 100%;
+    height: auto;
+    background-color: red;
+  }
+}
 
 @media only screen and (max-width: 688px) {
   .header {

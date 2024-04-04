@@ -12,6 +12,8 @@ import {
   FaTwitter,
   FaLinkedinIn,
   FaYoutube,
+  FaCamera,
+  FaCloudUploadAlt,
 } from "react-icons/fa";
 import {
   BiChevronDown,
@@ -72,4 +74,6 @@ export {
   FaTwitter,
   FaLinkedinIn,
   FaYoutube,
+  FaCamera,
+  FaCloudUploadAlt,
 };
