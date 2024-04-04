@@ -241,7 +241,8 @@ const Dashboard = () => {
           {isSubmitting && (
             <div className="loading">Data processing and loading...</div>
           )}
-          <button onClick={onLoadData}>Load Data</button>
+          {/* <button onClick={onLoadData}>Load Data</button> */}
+          <button onClick={null}>Load Data</button>
         </div>
         <div className="top">
           <ResponsiveContainer width="100%" height="100%">

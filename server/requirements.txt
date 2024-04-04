@@ -19,3 +19,8 @@ python-multipart
 # 
 
 # password=pwd_context.hash(register.new_password)
+
+# import sqlmodel
+# from sqlmodel import SQLModel
+# from api.v1.models import *
+# target_metadata = SQLModel.metadata

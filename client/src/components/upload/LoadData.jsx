@@ -9,6 +9,10 @@ import swal from "sweetalert";
 const LoadData = () => {
   const axiosPrivate = useAxiosPrivate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [onProcessEnded, setOnProcessEnded] = useState({
+    onSucces: false,
+    onFailed: false,
+  });
 
   const {
     register,
@@ -30,10 +34,16 @@ const LoadData = () => {
         let response = result;
         if (response?.data?.status === 1) {
           setIsSubmitting(false);
+          setOnProcessEnded({ onSucces: true, onFailed: false });
         }
+        const timer = setTimeout(() => {
+          setOnProcessEnded({ onSucces: false, onFailed: false });
+        }, 50000);
+        return () => clearTimeout(timer);
       })
       .catch((error) => {
         setIsSubmitting(false);
+        setOnProcessEnded({ onSucces: false, onFailed: true });
         if (!error?.response) {
           swal({
             title: "Oups!",
@@ -49,6 +59,10 @@ const LoadData = () => {
             buttons: true,
           });
         }
+        const timer = setTimeout(() => {
+          setOnProcessEnded({ onSucces: false, onFailed: false });
+        }, 50000);
+        return () => clearTimeout(timer);
       });
   };
 
@@ -89,7 +103,19 @@ const LoadData = () => {
           Process
         </button>
       </form>
-      <div className="loagin-data-process"></div>
+      {isSubmitting && (
+        <div className="loagin-data-process">
+          {!onProcessEnded.onSucces && !onProcessEnded.onFailed && (
+            <span>Data processing and loading...</span>
+          )}
+          {onProcessEnded.onSucces && (
+            <span>Data processing and loading complete successfully.</span>
+          )}
+          {onProcessEnded.onFailed && (
+            <span>Data processing and loading process failed</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

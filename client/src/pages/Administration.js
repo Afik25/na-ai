@@ -19,6 +19,7 @@ import useLogout from "../hooks/context/state/useLogout";
 import Modal from "../components/modal/Modal";
 import CompleteRegister from "../components/complete/CompleteRegister";
 import { useSelector } from "react-redux";
+import { capitalize } from "../utils/utils";
 import LoadData from "../components/upload/LoadData";
 
 const Administration = () => {
@@ -92,7 +93,9 @@ const Administration = () => {
                   </div>
                   <div
                     className={
-                      isLoadProcess ? "profile-item load-frame display" : "profile-item"
+                      isLoadProcess
+                        ? "profile-item load-frame display"
+                        : "profile-item"
                     }
                   >
                     <LoadData />
@@ -124,9 +127,9 @@ const Administration = () => {
                       />
                     </div>
                     <h3 className="title t-2">
-                      {connectedUser?.userInfo?.prename +
+                      {capitalize(connectedUser?.userInfo?.prename) +
                         " " +
-                        connectedUser?.userInfo?.name}
+                        capitalize(connectedUser?.userInfo?.name)}
                     </h3>
                     {option ? (
                       <BiChevronUp className="icon" />
