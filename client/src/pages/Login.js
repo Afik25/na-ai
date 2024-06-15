@@ -36,6 +36,7 @@ const Login = () => {
     //
     login(data)
       .then((response) => {
+        console.log({ "Tala reponse ": response });
         if (response?.data?.isLogged) {
           setIsSending(false);
           setMsg(response?.data?.message);
@@ -82,7 +83,7 @@ const Login = () => {
       <div className="sign-in-up">
         <div className="head">
           <Link to="/" className="link logo">
-            <img src={process.env.PUBLIC_URL + "/logo.png"} alt="na-ai-logo"/>
+            <img src={process.env.PUBLIC_URL + "/logo.png"} alt="na-ai-logo" />
           </Link>
           <ControlLanguage />
         </div>
@@ -163,9 +164,13 @@ const Login = () => {
           <div className="right">
             <h1 className="title t-1">with na-AI</h1>
             <h3 className="title t-2">
-              Make simple your communication and understanding in local languages!
+              Make simple your communication and understanding in local
+              languages!
             </h3>
-            <img src={process.env.PUBLIC_URL + '/people-speech.png'} alt="na-ai-brand"/>
+            <img
+              src={process.env.PUBLIC_URL + "/people-speech.png"}
+              alt="na-ai-brand"
+            />
           </div>
         </div>
         <div className="foot">

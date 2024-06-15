@@ -944,7 +944,6 @@ body {
         cursor: pointer;
         transition: all 0.3s ease;
         overflow: hidden;
-
         span {
           width: 10px;
           height: 10px;
@@ -961,20 +960,16 @@ body {
           }
         }
       }
-
       .profile {
         position: relative;
-
         .t-2 {
           font-size: $size-1;
           margin: 0 0.5rem;
         }
-
         .display {
           display: block !important;
           animation: zoomIn 0.3s ease-in-out;
         }
-
         @keyframes zoomIn {
           0% {
             transform: scale(0.8);
@@ -1005,22 +1000,18 @@ body {
           z-index: 10;
           display: none;
           overflow: hidden;
-
           .nav-link {
             text-decoration: none;
             color: $black-color;
             cursor: pointer;
             padding: 0.5rem 1rem;
             font-size: $size-1;
-
             display: flex;
             align-items: center;
-
             .icon {
               margin-right: 0.5rem;
               color: $grey-color-1;
             }
-
             &:hover {
               background-color: $grey-color-3;
             }

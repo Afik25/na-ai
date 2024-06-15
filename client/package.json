@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@hookform/resolvers": "^2.9.10",
     "@pdftron/webviewer": "^10.3.0",
     "@reduxjs/toolkit": "^1.9.5",

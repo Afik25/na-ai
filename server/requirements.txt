@@ -13,6 +13,7 @@ python-multipart
 
 # pip install -r requirements.txt
 # (base) afik@Amss-MacBook-Pro server % source venv/bin/activate
+# (base) afik@Amss-MacBook-Pro server % python3 main.py
 # alembic init -t async migrations
 # alembic revision --autogenerate -m "message content"
 # alembic upgrade head
